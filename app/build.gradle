@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.example.citycamerasapp"
@@ -31,6 +31,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures{
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -52,13 +55,14 @@ dependencies {
 
     //Dagger Hilt impl
     implementation "com.google.dagger:hilt-android:2.38.1"
-    kapt "com.google.dagger:hilt-compiler:2.43.2"
+    kapt "com.google.dagger:hilt-compiler:2.38.1"
 
     //Coroutines impl
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
 
     //ViewModel
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+    implementation 'androidx.fragment:fragment-ktx:1.5.2'
 
     //Paging2 impl
     implementation 'androidx.paging:paging-runtime:3.1.1'
