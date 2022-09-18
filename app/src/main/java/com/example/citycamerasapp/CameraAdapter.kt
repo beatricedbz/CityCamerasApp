@@ -28,7 +28,7 @@ class CameraAdapter: RecyclerView.Adapter<CameraAdapter.MyViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.tvStreetName.text = "${cameras[position].city}, ${cameras[position].StreetName}"
+        holder.tvStreetName.text = "${cameras[position].city}, ${cameras[position].streetName}"
         Glide.with(holder.itemView.context)
             .load("https://krkvideo14.orionnet.online/cam${cameras[position].id}/preview.jpg")
             .into(holder.ivPreview)

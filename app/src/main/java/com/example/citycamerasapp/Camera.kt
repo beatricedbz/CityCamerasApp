@@ -5,6 +5,6 @@ import com.google.gson.annotations.SerializedName
 data class Camera(
     val id: Int,
     @SerializedName("title")
-    val StreetName: String,
+    val streetName: String,
     val city: String,
 )
