@@ -10,7 +10,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    lateinit var adapter: CameraAdapter
+    private lateinit var adapter: CameraAdapter
     private val viewModel: CameraViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,9 +30,5 @@ class MainActivity : AppCompatActivity() {
                 adapter.fillCameras(it)
             }
         }
-    }
-
-    private fun initRecycler() {
-
     }
 }

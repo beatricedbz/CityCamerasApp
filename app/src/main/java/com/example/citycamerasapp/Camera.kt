@@ -6,4 +6,5 @@ data class Camera(
     val id: Int,
     @SerializedName("title")
     val StreetName: String,
+    val city: String,
 )
