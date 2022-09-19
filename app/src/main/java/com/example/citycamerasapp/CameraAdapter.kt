@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 class CameraAdapter(private val clickListener: (Camera) -> Unit): RecyclerView.Adapter<CameraAdapter.MyViewHolder>() {
     var cameras: List<Camera> = emptyList()

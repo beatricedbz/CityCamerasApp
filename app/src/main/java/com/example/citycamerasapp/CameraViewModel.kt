@@ -15,15 +15,19 @@ class CameraViewModel @Inject constructor(
     val cameraList = MutableLiveData<List<Camera>>()
     val errorMessage = MutableLiveData<String>()
 
+    val isRefreshing = MutableLiveData<Boolean>(false)
     fun getAllCameras() {
+        isRefreshing.value = true
         val response = repository.getAllCameras()
         response.enqueue(object : Callback<List<Camera>> {
             override fun onResponse(call: Call<List<Camera>>, response: Response<List<Camera>>) {
                 cameraList.postValue(response.body())
+                isRefreshing.value = false
             }
 
             override fun onFailure(call: Call<List<Camera>>, t: Throwable) {
                 errorMessage.postValue(t.message)
+                isRefreshing.value = false
             }
         })
     }
