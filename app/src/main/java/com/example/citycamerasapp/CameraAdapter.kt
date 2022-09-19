@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-class CameraAdapter: RecyclerView.Adapter<CameraAdapter.MyViewHolder>() {
+class CameraAdapter(private val clickListener: (Camera) -> Unit): RecyclerView.Adapter<CameraAdapter.MyViewHolder>() {
     var cameras: List<Camera> = emptyList()
 
     fun fillCameras(list: List<Camera>){
@@ -28,10 +28,12 @@ class CameraAdapter: RecyclerView.Adapter<CameraAdapter.MyViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val clickOnImage = cameras[position]
         holder.tvStreetName.text = "${cameras[position].city}, ${cameras[position].streetName}"
         Glide.with(holder.itemView.context)
             .load("https://krkvideo14.orionnet.online/cam${cameras[position].id}/preview.jpg")
             .into(holder.ivPreview)
+        holder.ivPreview.setOnClickListener{clickListener(clickOnImage)}
     }
 
     override fun getItemCount(): Int {
