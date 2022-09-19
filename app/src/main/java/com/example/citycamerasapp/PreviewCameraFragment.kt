@@ -1,12 +1,8 @@
 package com.example.citycamerasapp
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.citycamerasapp.databinding.FragmentPreviewCameraBinding
@@ -24,17 +20,20 @@ class PreviewCameraFragment : Fragment(R.layout.fragment_preview_camera) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = FragmentPreviewCameraBinding.bind(view)
-        adapter = CameraAdapter{clickListener ->
-            var bundle: Bundle? = null
-            bundle?.putInt("id", clickListener.id)
+        adapter = CameraAdapter { clickListener ->
+            val bundle = Bundle()
+            bundle.putInt("id", clickListener.id)
+            val videoFragment = VideoCameraFragment()
+            videoFragment.arguments = bundle
 
             parentFragmentManager
-            .beginTransaction()
-            .replace(R.id.flFragmentHolder, VideoCameraFragment.newInstance())
-            .commit()
+                .beginTransaction()
+                .addToBackStack("name")
+                .replace(R.id.flFragmentHolder, videoFragment)
+                .commit()
         }
 
-        binding.apply{
+        binding.apply {
             rvCameras.layoutManager = GridLayoutManager(context, 1)
             rvCameras.adapter = adapter
         }
@@ -50,6 +49,7 @@ class PreviewCameraFragment : Fragment(R.layout.fragment_preview_camera) {
         @JvmStatic
         fun newInstance() = PreviewCameraFragment()
     }
+
     private fun observeCameras() {
         with(viewModel) {
             getAllCameras()
