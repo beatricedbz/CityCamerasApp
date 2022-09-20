@@ -10,12 +10,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CameraViewModel @Inject constructor(
-    private val repository: CameraRepository
-    ) : ViewModel() {
+    private val repository: CameraRepository,
+) : ViewModel() {
     val cameraList = MutableLiveData<List<Camera>>()
     val errorMessage = MutableLiveData<String>()
-
     val isRefreshing = MutableLiveData<Boolean>(false)
+
     fun getAllCameras() {
         isRefreshing.value = true
         val response = repository.getAllCameras()

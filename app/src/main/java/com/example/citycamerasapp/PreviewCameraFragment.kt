@@ -37,7 +37,6 @@ class PreviewCameraFragment : Fragment(R.layout.fragment_preview_camera) {
             rvCameras.layoutManager = GridLayoutManager(context, 1)
             rvCameras.adapter = adapter
             swlRoot.setOnRefreshListener {
-
                 viewModel.getAllCameras()
             }
         }
@@ -59,12 +58,13 @@ class PreviewCameraFragment : Fragment(R.layout.fragment_preview_camera) {
         with(viewModel) {
             getAllCameras()
             cameraList.observe(viewLifecycleOwner) {
-                adapter.fillCameras(it)
+                adapter.submitList(it)
             }
         }
     }
-    private fun observeIsRefreshing(){
-        viewModel.isRefreshing.observe(viewLifecycleOwner){
+
+    private fun observeIsRefreshing() {
+        viewModel.isRefreshing.observe(viewLifecycleOwner) {
             binding.swlRoot.isRefreshing = it
         }
     }
