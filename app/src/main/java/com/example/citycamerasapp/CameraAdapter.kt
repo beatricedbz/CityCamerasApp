@@ -3,6 +3,7 @@ package com.example.citycamerasapp
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
@@ -32,6 +33,7 @@ class CameraAdapter(private val clickListener: (Camera) -> Unit): ListAdapter<Ca
             .load("https://krkvideo14.orionnet.online/cam${camera.id}/preview.jpg")
             .into(holder.ivPreview)
         holder.ivPreview.setOnClickListener{clickListener(camera)}
+
     }
 
     object CameraDiffUtil: DiffUtil.ItemCallback<Camera>() {

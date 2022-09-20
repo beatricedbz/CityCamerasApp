@@ -25,14 +25,12 @@ class PreviewCameraFragment : Fragment(R.layout.fragment_preview_camera) {
             bundle.putInt("id", clickListener.id)
             val videoFragment = VideoCameraFragment()
             videoFragment.arguments = bundle
-
             parentFragmentManager
                 .beginTransaction()
                 .addToBackStack("name")
                 .replace(R.id.flFragmentHolder, videoFragment)
                 .commit()
         }
-
         binding.apply {
             rvCameras.layoutManager = GridLayoutManager(context, 1)
             rvCameras.adapter = adapter
