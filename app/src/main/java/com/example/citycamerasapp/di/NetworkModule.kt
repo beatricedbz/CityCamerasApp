@@ -1,5 +1,6 @@
-package com.example.citycamerasapp
+package com.example.citycamerasapp.di
 
+import com.example.citycamerasapp.data.CameraApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 @Module
 class NetworkModule {
     @Provides
-    fun provideCameraApi(retrofitClient: Retrofit): CameraApi{
+    fun provideCameraApi(retrofitClient: Retrofit): CameraApi {
         return retrofitClient.create(CameraApi::class.java)
     }
 

@@ -1,5 +1,7 @@
-package com.example.citycamerasapp
+package com.example.citycamerasapp.di
 
+import com.example.citycamerasapp.data.CameraApi
+import com.example.citycamerasapp.data.CameraRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -10,7 +12,7 @@ import dagger.hilt.android.components.ViewModelComponent
 class CameraModule {
 
     @Provides
-    fun provideCameraRepository(cameraApi: CameraApi): CameraRepository{
+    fun provideCameraRepository(cameraApi: CameraApi): CameraRepository {
         return CameraRepository(cameraApi)
     }
 }

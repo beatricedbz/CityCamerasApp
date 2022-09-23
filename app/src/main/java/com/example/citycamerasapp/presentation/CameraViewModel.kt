@@ -1,7 +1,9 @@
-package com.example.citycamerasapp
+package com.example.citycamerasapp.presentation
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.citycamerasapp.data.Camera
+import com.example.citycamerasapp.data.CameraRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import retrofit2.Callback

@@ -1,7 +1,6 @@
-package com.example.citycamerasapp
+package com.example.citycamerasapp.presentation
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.citycamerasapp.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint

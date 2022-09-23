@@ -1,10 +1,11 @@
-package com.example.citycamerasapp
+package com.example.citycamerasapp.presentation
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.citycamerasapp.R
 import com.example.citycamerasapp.databinding.FragmentPreviewCameraBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -34,7 +35,7 @@ class PreviewCameraFragment : Fragment(R.layout.fragment_preview_camera) {
         binding.apply {
             rvCameras.layoutManager = GridLayoutManager(context, 1)
             rvCameras.adapter = adapter
-            swlRoot.setOnRefreshListener {
+            srlRoot.setOnRefreshListener {
                 viewModel.getAllCameras()
             }
         }
@@ -63,7 +64,7 @@ class PreviewCameraFragment : Fragment(R.layout.fragment_preview_camera) {
 
     private fun observeIsRefreshing() {
         viewModel.isRefreshing.observe(viewLifecycleOwner) {
-            binding.swlRoot.isRefreshing = it
+            binding.srlRoot.isRefreshing = it
         }
     }
 }

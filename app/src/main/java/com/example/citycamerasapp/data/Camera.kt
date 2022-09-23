@@ -1,4 +1,4 @@
-package com.example.citycamerasapp
+package com.example.citycamerasapp.data
 
 import com.google.gson.annotations.SerializedName
 
