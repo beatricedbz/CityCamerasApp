@@ -4,7 +4,6 @@ CityCamerasApp
 - MVVM
 - Retrofit
 - LiveData
-- Paging2
 - Glide
 ## Экран превью камер:
 ![Главный экран приложения](https://github.com/beatricedbz/CityCamerasApp/blob/master/main_screen.png)
