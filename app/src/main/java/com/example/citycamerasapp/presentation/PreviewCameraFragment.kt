@@ -2,6 +2,7 @@ package com.example.citycamerasapp.presentation
 
 import android.os.Bundle
 import android.view.View
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -35,9 +36,22 @@ class PreviewCameraFragment : Fragment(R.layout.fragment_preview_camera) {
         binding.apply {
             rvCameras.layoutManager = GridLayoutManager(context, 1)
             rvCameras.adapter = adapter
+
             srlRoot.setOnRefreshListener {
                 viewModel.getAllCameras()
             }
+
+            svQuery.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String): Boolean {
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String): Boolean {
+                    (rvCameras.adapter as CameraAdapter).filter(newText)
+                    if (newText == "") rvCameras.smoothScrollToPosition(0)
+                    return true
+                }
+            })
         }
         observeIsRefreshing()
         observeCameras()
@@ -57,7 +71,7 @@ class PreviewCameraFragment : Fragment(R.layout.fragment_preview_camera) {
         with(viewModel) {
             getAllCameras()
             cameraList.observe(viewLifecycleOwner) {
-                adapter.submitList(it)
+                adapter.modifyList(it)
             }
         }
     }
